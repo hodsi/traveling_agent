@@ -1,6 +1,6 @@
 from typing import List
 
-from edge import Edge
+from entities.edge import Edge
 
 
 class Route(object):

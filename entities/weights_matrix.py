@@ -1,6 +1,6 @@
 from typing import List
 
-from route import Route
+from entities.route import Route
 
 
 class WeightsMatrix(object):

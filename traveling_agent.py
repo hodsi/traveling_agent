@@ -1,7 +1,8 @@
 from copy import deepcopy
 from typing import List, Optional, Iterator
 
-from entities.weights_matrix import WeightsMatrix, Route
+from entities.route import Route
+from entities.weights_matrix import WeightsMatrix
 
 
 def subtract_rows(matrix: WeightsMatrix):
