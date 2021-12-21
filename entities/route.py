@@ -6,8 +6,8 @@ from entities.edge import Edge
 class Route(object):
     def __init__(self, vertexes: List[int] = None, edges: List[Edge] = None, is_circle=False):
         self.is_circle = is_circle
-        if None not in (vertexes, edges):
-            raise ValueError(f'{type(self)} gets either vertexes or edges, not both')
+        if [vertexes, edges].count(None) != 1:
+            raise ValueError(f'{type(self)} gets either vertexes or edges')
         if edges:
             vertexes = [edges[0].source_vertex, edges[0].destination_vertex]
             for edge, next_edge in zip(edges[:-1], edges[1:]):
