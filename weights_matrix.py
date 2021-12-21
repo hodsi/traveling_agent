@@ -1,27 +1,6 @@
-import dataclasses
 from typing import List
 
-
-@dataclasses.dataclass
-class Edge(object):
-    source_vertex: int
-    destination_vertex: int
-
-
-class Route(object):
-    def __init__(self, vertexes: List[int] = None, edges: List[Edge] = None):
-        if None not in (vertexes, edges):
-            raise ValueError(f'{type(self)} gets either vertexes or edges, not both')
-        if edges:
-            vertexes = [edges[0].source_vertex, edges[0].destination_vertex]
-            for edge, next_edge in zip(edges[:-1], edges[1:]):
-                if edge.destination_vertex != next_edge.source_vertex:
-                    raise ValueError('these edges don\'t make a route')
-                vertexes.append(next_edge.destination_vertex)
-        self.vertexes = vertexes
-
-    def __repr__(self):
-        return f'Route<{repr(self.vertexes)}>'
+from route import Route
 
 
 class WeightsMatrix(object):
@@ -36,4 +15,10 @@ class WeightsMatrix(object):
         return self.matrix_of_weights[i][j]
 
     def get_route_weight(self, route: Route) -> int:
-        return sum(self.get_weight(i, j) for i, j in zip(route.vertexes[:-1], route.vertexes[1:]))
+        return sum(self.get_weight(edge.source_vertex, edge.destination_vertex) for edge in route.get_edges())
+
+    def __len__(self):
+        return len(self.matrix_of_weights)
+
+    def __repr__(self):
+        return f'WeightsMatrix<{repr(self.matrix_of_weights)}>'
