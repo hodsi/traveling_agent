@@ -160,7 +160,7 @@ def fuse_two_circles(circle1: Route, circle2: Route, source1_index: int, source2
 
 
 def fuse_circles(matrix: WeightsMatrix, circles: List[Route]) -> Route:
-    circles = deepcopy(circles)
+    circles = circles[:]
     while len(circles) > 1:
         circle_combinations = itertools.combinations(circles, 2)
         min_circles = next(circle_combinations)
