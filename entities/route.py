@@ -38,4 +38,6 @@ class Route(object):
         return len(self.vertexes)
 
     def __repr__(self):
-        return f'Route<{repr(self.vertexes)}, is_circle={self.is_circle}>'
+        if self.is_circle:
+            return f'Circle<{self.vertexes + [self.vertexes[0]]}>'
+        return f'Route<{repr(self.vertexes)}>'
